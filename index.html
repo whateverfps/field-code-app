@@ -1,29 +1,37 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>Field Code Reference</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-    <h1>Field Code Reference</h1>
-    <input type="text" id="searchBox" placeholder="Search codes..." onkeyup="filterTable()">
-    <table id="codeTable">
-        <thead>
-            <tr>
-                <th>Code</th>
-                <th>Level</th>
-                <th>Title</th>
-                <th>Subtitle</th>
-                <th>Link</th>
-            </tr>
-        </thead>
-        <tbody id="tableBody">
-            <!-- Data will be inserted here -->
-        </tbody>
-    </table>
+    <header>
+        <h1>Field Code Reference</h1>
+    </header>
+    <main>
+        <input type="text" id="searchBox" placeholder="Search codes..." onkeyup="filterTable()" />
+        <div class="table-container">
+            <table id="codeTable">
+                <thead>
+                    <tr>
+                        <th>Code</th>
+                        <th>Level</th>
+                        <th>Title</th>
+                        <th>Subtitle</th>
+                        <th>Link</th>
+                    </tr>
+                </thead>
+                <tbody id="tableBody">
+                    <!-- Filled by script.js -->
+                </tbody>
+            </table>
+        </div>
+    </main>
+    <footer>
+        <p>Built by Whateverfps • Powered by GitHub Pages</p>
+    </footer>
     <script src="script.js"></script>
 </body>
 </html>
