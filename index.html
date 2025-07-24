@@ -111,14 +111,36 @@
 
     let chatHistory = [];
 
-    async function fetchCodeExcerpts() {
+    async function fetchLiveCodes() {
         try {
-            // Placeholder: fetch from official sources (public endpoints) OR fallback to local codes.json
+            // These are placeholder links for official ICC/NFPA API endpoints or scraped mirrors
+            const endpoints = [
+                "https://public.codes.iccsafe.org/api/IBC-2021-NH",
+                "https://public.codes.iccsafe.org/api/IPC-2021-NH",
+                "https://public.codes.iccsafe.org/api/IMC-2021-NH",
+                "https://public.codes.nfpa.org/api/NEC-2020-NH"
+            ];
+
+            const responses = await Promise.allSettled(endpoints.map(url => fetch(url).then(r => r.ok ? r.text() : "")));
+            const texts = responses.map(r => (r.status === "fulfilled" ? r.value : "")).filter(Boolean);
+            return texts.join("\n\n");
+        } catch (err) {
+            return "";
+        }
+    }
+
+    async function fetchCodeExcerpts() {
+        const live = await fetchLiveCodes();
+        if (live && live.trim().length > 0) return live;
+
+        // Fallback to local JSON
+        try {
             const res = await fetch("codes.json");
             if (res.ok) return await res.text();
         } catch (err) {
             return "Could not fetch building code excerpts.";
         }
+        return "";
     }
 
     async function askGPT() {
@@ -132,7 +154,7 @@
         const sopText = document.querySelector('.sop-section').innerText;
         const codeText = await fetchCodeExcerpts();
 
-        const context = `Use the following SOP and New Hampshire building code excerpts (IBC, IPC, IMC, NEC, RSA) to answer conversationally. Include code citations where appropriate. Maintain a conversational tone, referencing previous chat if helpful.\n\nSOP:\n${sopText}\n\nCodes:\n${codeText}\n\nChat so far:\n${chatHistory.join("\n")}\n\nQuestion: ${query}`;
+        const context = `Use the following SOP and New Hampshire building codes (IBC, IPC, IMC, NEC, RSA) to answer conversationally. Always use the most accurate, recent code excerpts. Maintain prior chat context.\n\nSOP:\n${sopText}\n\nCodes:\n${codeText}\n\nChat so far:\n${chatHistory.join("\n")}\n\nQuestion: ${query}`;
 
         try {
             const res = await fetch(OPENAI_URL, {
@@ -147,15 +169,24 @@
                     max_tokens: 500
                 })
             });
-            const data = await res.json();
-            const reply = data.choices[0].message.content.trim();
 
+            const data = await res.json();
+
+            if (!data.choices || !data.choices[0] || !data.choices[0].message) {
+                const errorMsg = data.error?.message || "No valid response from GPT API.";
+                chatWindow.innerHTML += `<div class='bot-msg'>Assistant Error: ${errorMsg}</div>`;
+                return;
+            }
+
+            const reply = data.choices[0].message.content.trim();
             chatHistory.push(`You: ${query}`);
             chatHistory.push(`Assistant: ${reply}`);
+
             chatWindow.innerHTML += `<div class='bot-msg'><strong>Assistant:</strong> ${reply}</div>`;
             chatWindow.scrollTop = chatWindow.scrollHeight;
+
         } catch (error) {
-            chatWindow.innerHTML += `<div class='bot-msg'>Error: ${error.message}</div>`;
+            chatWindow.innerHTML += `<div class='bot-msg'>Network Error: ${error.message}</div>`;
         }
     }
     </script>
