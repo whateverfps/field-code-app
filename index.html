@@ -1,11 +1,24 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>Field Code Reference</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Field Code Reference & Full SOP</title>
     <link rel="stylesheet" href="style.css" />
+    <style>
+        .sop-section {
+            max-width: 900px;
+            margin: 20px auto;
+            padding: 20px;
+            background: #fff;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+            border-radius: 8px;
+            line-height: 1.6;
+        }
+        .sop-section h2, .sop-section h3 {
+            color: #004080;
+        }
+    </style>
 </head>
 <body>
     <header>
@@ -13,6 +26,79 @@
     </header>
     <main>
         <input type="text" id="searchBox" placeholder="Search codes..." onkeyup="filterTable()" />
+        
+        <section class="sop-section">
+            <h2>Chief Building Inspector & Health Officer SOP (Full Document)</h2>
+            <p><strong>Mission & Values:</strong> The Chief Building Inspector & Health Officer safeguards Claremont by enforcing codes fairly, protecting public safety, educating the community, and coordinating with departments to ensure a thriving city.</p>
+            
+            <h3>Introduction</h3>
+            <p>As Chief, Paul Thibodeau uses his military, contracting, and leadership background to enforce codes, resolve conflicts, and modernize operations. This SOP outlines procedures for inspections, hazard management, abatements, and collaboration.</p>
+
+            <h3>Section 1 – Role & Legal Authority</h3>
+            <p>Authority under RSA 155-A (Building Code), RSA 147 (Public Health), and RSA 128 (Health Administration). Powers include issuing permits, inspections, stop-work orders, abatements, closures, and coordinating with Police, Fire, DPW, Planner, and City Attorney.</p>
+
+            <h3>Section 2 – Complaint Handling Workflow</h3>
+            <ol>
+                <li>Receive and log complaint.</li>
+                <li>Investigate: 48 hours (hazard), 72 hours (non-critical).</li>
+                <li>Document findings.</li>
+                <li>Resolve via education, abatement, or hazard protocol.</li>
+                <li>Follow-up and close with report.</li>
+            </ol>
+
+            <h3>Section 3 – Hazard & Imminent Danger Protocol</h3>
+            <ol>
+                <li>Evacuate occupants.</li>
+                <li>Post "Unsafe to Occupy" notices.</li>
+                <li>Notify Police and Fire.</li>
+                <li>Issue RSA-cited written order.</li>
+                <li>Follow up within 48 hours.</li>
+            </ol>
+
+            <h3>Section 4 – Routine Inspections</h3>
+            <ul>
+                <li>Building permits (construction, mechanical, plumbing, electrical).</li>
+                <li>Rental housing habitability.</li>
+                <li>Restaurant & lodging sanitation.</li>
+            </ul>
+
+            <h3>Section 5 – Abatement & Enforcement</h3>
+            <ol>
+                <li>Inspection triggered by complaint or observation.</li>
+                <li>Investigation and documentation.</li>
+                <li>Abatement Order issued (deadline, RSA 147/155-A).</li>
+                <li>Follow-up inspection.</li>
+                <li>If unresolved: City abatement or closure, costs billed to owner.</li>
+                <li>Final inspection and documentation.</li>
+            </ol>
+
+            <h3>Section 6 – Coordination Protocols</h3>
+            <p>Work directly with Police (access, security), Fire (life safety), DPW (utilities, drainage), City Planner (zoning compliance), and City Attorney (legal enforcement).</p>
+
+            <h3>Section 7 – RSA Appendix</h3>
+            <p><strong>RSA 155-A:</strong> Enforces IBC, IPC, IMC, IECC, NEC; permits, inspections, stop-work, vacate unsafe buildings.<br>
+               <strong>RSA 147:</strong> Public health nuisances, abatement, closures.<br>
+               <strong>RSA 128:</strong> Health Officer duties and DHHS coordination.</p>
+
+            <h3>Section 8 – Leadership & Deputy Management</h3>
+            <p>Chief oversees policy and legal enforcement; Deputy handles routine inspections, intake, and follow-ups. Daily 5-minute check-ins, weekly 15-minute reviews, and Deputy certification path.</p>
+
+            <h3>Section 9 – Media & Future Growth</h3>
+            <p>Only confirm basic facts, defer details to City Manager. As the city grows, expand staff and shift the Chief toward strategic oversight and Deputy supervisory roles.</p>
+
+            <h3>Appendix A – Notice Templates</h3>
+            <p>Includes Abatement Orders, Unsafe to Occupy postings, and Business Closure Orders (fillable templates).</p>
+
+            <h3>Appendix B – First 90 Days Plan</h3>
+            <p>Align department, launch workflows, train Deputy, and deliver a 90-day report to City Manager.</p>
+
+            <h3>Appendix C – First Staff Meeting Agenda</h3>
+            <p>Outlines introductions, workflow training, communication plans, and Deputy certification track.</p>
+
+            <h3>Appendix D – Public Overview</h3>
+            <p>Summarizes Chief Thibodeau’s role and services for residents, businesses, and developers with City Hall contact info.</p>
+        </section>
+
         <div class="table-container">
             <table id="codeTable">
                 <thead>
@@ -31,7 +117,12 @@
         </div>
     </main>
     <footer>
-        <p>Built by Whateverfps • Powered by GitHub Pages</p>
+        <p>Built by Paul Thibodeau • Powered by GitHub Pages</p>
+    </footer>
+    <script src="script.js"></script>
+</body>
+</html>
+
     </footer>
     <script src="script.js"></script>
 </body>
